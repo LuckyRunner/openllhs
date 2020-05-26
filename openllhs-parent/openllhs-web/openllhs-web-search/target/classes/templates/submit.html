@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Home - Human Morphology Catalog - National Genomics Data Center</title>
+    <div th:replace="~{inc/header::header}"></div>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper" style="overflow:hidden;height: auto;">
+    <div th:replace="inc/nav::#nav(activeUri='submit')"></div>
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <i class="fa fa-text-width"></i>
+                            <h3 class="box-title">Introduction</h3>
+                        </div>
+                        <div class="box-body">
+                            <p>
+                                Predicting human morphological traits using genomic data (aka, DNA portraying or DNA phenotyping)
+                                shows promising prospect in forensic studies. To fill up the vacancy of single nucleotide polymorphism
+                                (SNP) data related to human morphological characters and to make SNP data more friendly to use,
+                                we establish a DNA portrait landscape, which is the first portrait-specific database focusing on
+                                the relationship between genes and different kinds of morphological characteristics of humans.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Horizontal Form</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" id="ajax">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="inputLN" class="col-sm-2 control-label">Family name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="familyname" id="inputLN" placeholder="Family name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputFN" class="col-sm-2 control-label">First name</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="firstname" id="inputFN" placeholder="First name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label">Email Address</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email Address">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pubstatus" class="col-sm-2 control-label">Publication Status</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="pubstatus" id="pubstatus" placeholder="Publication Status">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="publicationtitle" class="col-sm-2 control-label">Publication Title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="publicationtitle" id="publicationtitle" placeholder="Publication Title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="trait" class="col-sm-2 control-label">Trait</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="trait" id="trait" placeholder="Trait">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Chromosome" class="col-sm-2 control-label">Chromosome</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="chromosome" id="Chromosome" placeholder="Chromosome">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Locus" class="col-sm-2 control-label">Locus</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="locus" id="Locus" placeholder="Locus">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SNP" class="col-sm-2 control-label">SNP</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="snp" id="SNP" placeholder="SNP">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="riskallele" class="col-sm-2 control-label">Risk allele</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="riskallele" id="riskallele" placeholder="Risk allele">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maf" class="col-sm-2 control-label">MAF</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="maf" id="maf" placeholder="MAF">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="closest" class="col-sm-2 control-label">Closest</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="closestgene" id="closest" placeholder="Closest">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="effectvalue" class="col-sm-2 control-label">Effect value</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="effectvalue" id="effectvalue" placeholder="Effect value">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="detectionmathod" class="col-sm-2 control-label">Detection mathod</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="" id="detectionmathod" placeholder="Detection mathod">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submessage" class="col-sm-2 control-label">Other Message</label>
+                                    <div class="col-sm-10">
+                                        <textarea rows="5"  type="text" class="form-control" name="message" id="submessage" placeholder="Other Message"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right" onclick="ajaxtest()">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{inc/footer::#footer}"></div>
+
+<script>
+    function ajaxtest(){
+        $.ajax({
+            url: "https://bigd.big.ac.cn/hpc/submit/",
+            type: "POST",
+            dataType: "json",
+            data: $('#ajax').serialize(),
+            success: function (r) {
+                alert("插入成功！！！");
+            },
+            error : function() {
+                alert("插入失败,请重新插入");
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Home - Human Morphology Catalog - National Genomics Data Center</title>
+    <div th:replace="~{inc/header::header}"></div>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper" style="overflow:hidden;height: auto;">
+    <div th:replace="inc/nav::#nav(activeUri='help')"></div>
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <h4 class="post-title"><a href="#index_1_1">I.Introduction</a></h4>
+                            <h5 class="post-title"><a href="#index_1_2">&nbsp;&nbsp;&nbsp;A. What is DNA Portrai Landscape?</a></h5><br>
+                            <h4 class="post-title"><a href="#index_2_1">II. Datasets and Curation Model</a></h4>
+                            <h5><a href="#index_2_2">&nbsp;&nbsp;&nbsp;A.Datasets</a></h5>
+                            <h5><a href="#index_2_3">&nbsp;&nbsp;&nbsp;B. Curation model</a></h5><br>
+                            <h4 class="post-title"><a href="#index_3_1">III. Database Usage</a></h4>
+                            <h5><a href="#index_3_2">&nbsp;&nbsp;&nbsp;A. What information is provided for DNA Portrait Landscape?</a></h5>
+                            <h5><a href="#index_3_3">&nbsp;&nbsp;&nbsp;B. How can I get detailed information for any human morphological trait of interest?</a></h5><br>
+                            <h4 class="post-title"><a href="#index_4_1">IV. Support</a></h4>
+                            <h5><a href="#index_4_2" >&nbsp;&nbsp;&nbsp;A. Comments & Collaborations</a></h5>
+                            <h5><a href="#index_4_3" >&nbsp;&nbsp;&nbsp;B. Contact us</a></h5>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border" id="index_1_1">
+                            <h3 class="box-title">I.Introduction</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="box-group" id="index_1">
+                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                <div class="panel box box-primary">
+                                    <div class="box-header with-border" id="index_1_2">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#index_1" href="#method_1_1">
+                                                A.What is DNA Portrait Landscape?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_1_1" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            Predicting human morphological traits using genomic data (aka, DNA portraying or DNA phenotyping)
+                                            shows promising prospect in forensic studies. To fill up the vacancy of single nucleotide polymorphism
+                                            (SNP) data related to human morphological characters and to make SNP data more friendly to use,
+                                            we establish a DNA portrait landscape, short DNAportrait, which is the first portrait-specific database
+                                            focusing on the relationship between genes and different kinds of morphological characteristics of humans.
+                                            DNAportrait is a web-based, open-access resource comprising over 500 genes that effect on human externally
+                                            visual characteristics such as eye color, skin color, hair curling etc. In addition, DNAportrait
+                                            integrated data through hundreds of articles manually, which provides information including gene name,
+                                            appearance trait, SNP position, variation annotation, effect value and so on. All the data makes
+                                            DNAportrait the first comprehensive resource for forensic studies on genomic data and morphologies.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border" id="index_2_1">
+                            <h3 class="box-title">II.Datasets and Curation Model</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="box-group" id="index_2">
+                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                <div class="panel box box-primary">
+                                    <div class="box-header with-border" id="index_2_2">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#index_2" href="#method_2_1">
+                                                A.Datasets
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_2_1" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            The data is collected through a manually curation workflow. Relevant publication are obtained by extensive
+                                            search of peer-reviewed articles from PubMed (PubMed:
+                                            <a href="https://apps.webofknowledge.com/" style="color:#007799 " onMouseOver="this.style.color='#003377'" onMouseOut="this.style.color='#007799'">
+                                                https://www.ncbi.nlm.nih.gov/pubmed/</a>) and the Web
+                                            of Science database (Web of Science:
+                                            <a href="https://apps.webofknowledge.com/" style="color:#007799 " onMouseOver="this.style.color='#003377'" onMouseOut="this.style.color='#007799'">
+                                                https://apps.webofknowledge.com/</a>) using keywords with combinations
+                                            of: (i) genetic facial trait; (ii) genetic hair trait; (iii) genetic eye color or iris color trait; (iv)
+                                            genetic skin trait. Totally, we deposited more than 1183items, including 344 non-redundant SNPs,
+                                            510differentgenes.The number of genes involved in hair, skin, eye, and facial characters are 127, 207,
+                                            32 and 129 respectively. The detailed numbers of genes related to sub-traits are shown in Statistics page.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel box box-success">
+                                    <div class="box-header with-border" id="index_2_3">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#index_2" href="#method_2_2">
+                                                B.Curation model
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_2_2" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            <p style="padding-left: 20px">
+                                                With a manually semantic integration procedure, the externally visible traits and related genes and snps are hierarchically categorized.
+                                            </p>
+                                            <div class="box" style="padding-left: 20px">
+                                                <div class="box-header">
+                                                    <h5 class="box-title">The curation model we used is detailed below.</h5>
+                                                </div>
+                                                <div class="box-body table-responsive no-padding">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Data type</th>
+                                                            <th>Description</th>
+                                                            <th>Value</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Traits</td>
+                                                            <td>Controlled vocabulary</td>
+                                                            <td>Facial morphology; Hair; Iris color; Skin</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Facial morphology</td>
+                                                            <td>Feature classification</td>
+                                                            <td>Allometry;Bizygomatic distance;Breadth of the nasal bridge nasion;Centroid size;
+                                                                Chin protrusion;Cleft palate;Columella inclination;Cutaneous lower lip height;Depth
+                                                                of the nasal alae;distance between eyeballs and nasion;Distance between the eyeballs;
+                                                                Facial height;Frontonasal dysplasia;Height of the vermilion upper lip;Incisor inclination;
+                                                                Inclination of mandibular incisor;Intercanthal width;Length of the philtrum;Lower lip
+                                                                height;Mandibular shapes;Mouth width;Nasion position;Nasion to midendocanthion;Neural
+                                                                crest lineage;Nose bridge breadth;Nose bridge width;Nose protrusion;Nose tip angle;Nose
+                                                                width;Nose wing breadth;Outer canthal width;Position of the mandibular;Subnasal width;Width
+                                                                of the cartilaginous portion of the nose
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Hair</td>
+                                                            <td>Feature classification</td>
+                                                            <td>Baldness; Hair color; Hair curliness; Hair straightness</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Skin</td>
+                                                            <td>Feature classification</td>
+                                                            <td>Freckling; Skin color</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Continent</td>
+                                                            <td>Controlled vocabulary</td>
+                                                            <td>Africa;America;Asia;Europe;Oceania</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Population</td>
+                                                            <td>Controlled vocabulary</td>
+                                                            <td>Admixed South Americans;African Americans;Africans;Americans of European descent;
+                                                                Asian;Australian;Bantu African;Brazilian;Dutchman;East Asian;European American;
+                                                                European ancestry;German;Han Chinese ancestry;Indigenous Americans;Latin American;
+                                                                Melanesian;Polish;Uyghur Chinese ancestry;West African
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.table-body -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border" id="index_3_1">
+                            <h3 class="box-title">III.Database Usage</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="box-group"  id="index_3">
+                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                <div class="panel box box-primary">
+                                    <div class="box-header with-border" id="index_3_2">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#index_3" href="#method_3_1">
+                                                A.What information is provided for DNA Portrait Landscape?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_3_1" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            Information in DNAportraitsuch as SNP rs-ids, attribute of variant (reference allele, alternative allele,
+                                            MAF), nearby genes of the variant, the related morphological traits, the effect size of the variant in
+                                            the original study and the p-value of the statistical test,the corresponding study population and provenance
+                                            reference (PubMed ID, year of publication, title of paper), etc. areretrieved.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel box box-success">
+                                    <div class="box-header with-border" id="index_3_3">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#index_3" href="#method_3_2">
+                                                B. How can I get detailed information for any human morphological trait of interest?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_3_2" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            If you have some interest gene or rsID or chromosome or trait, please visit the page of Home, and you
+                                            can search the information in the search box. Or you can visit the page of Traits, SNPS, Populations,
+                                            and filter some conditions, and it will display the query results you interested in different kinds of details.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border" id="index_4_1">
+                            <h3 class="box-title">IV.Database Usage</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="box-group"  id="index_4">
+                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                <div class="panel box box-primary">
+                                    <div class="box-header with-border" id="index_4_2">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#method_4_1">
+                                                A.Comments & Collaborations
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_4_1" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            We look forward to worldwide comments, suggestions and guidance from colleagues and peers with common
+                                            research interests. We also invite the scientific community to submit their analysis results of human
+                                            morphological traits and related messages to DNAPortrait and to build collaborations in improving the
+                                            functionalities of DNAPortrait.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel box box-success">
+                                    <div class="box-header with-border" id="index_4_3">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#method_4_2">
+                                                B. Contact us
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="method_4_2" class="panel-collapse collapse in">
+                                        <div class="box-body">
+                                            We would love to hear from you for any questions or comments. Please find our contact information here
+                                            <a style="color:#007799 " onMouseOver="this.style.color='#003377'" onMouseOut="this.style.color='#007799'" href="/hpc/contact">[contact us].</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{inc/footer::#footer}"></div>
+</body>
+</html>

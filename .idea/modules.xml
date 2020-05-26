@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/code-template-master/code-template.iml" filepath="$PROJECT_DIR$/code-template-master/code-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/openllhs.iml" filepath="$PROJECT_DIR$/.idea/openllhs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-article/openllhs-article-service.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-article/openllhs-article-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-common/openllhs-common.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-common/openllhs-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-common-db/openllhs-common-db.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-common-db/openllhs-common-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-eureka/openllhs-eureka.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-eureka/openllhs-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-gateway/openllhs-gateway.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-gateway/openllhs-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-parent.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-api.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-article/openllhs-service-article.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-article/openllhs-service-article.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-article-api/openllhs-service-article-api.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-article-api/openllhs-service-article-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-file/openllhs-service-file.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-file/openllhs-service-file.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-search/openllhs-service-search.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-search/openllhs-service-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-search-api/openllhs-service-search-api.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-search-api/openllhs-service-search-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-web/openllhs-web.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-web/openllhs-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openllhs-parent/openllhs-web/openllhs-web-search/openllhs-web-search.iml" filepath="$PROJECT_DIR$/openllhs-parent/openllhs-web/openllhs-web-search/openllhs-web-search.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Home - Human Morphology Catalog - National Genomics Data Center</title>
+    <div th:replace="~{inc/header::header}"></div>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper" style="overflow:hidden;height: auto;">
+    <div th:replace="inc/nav::#nav(activeUri='contact')"></div>
+    <div class="content-wrapper">
+        <div class="container">
+
+            <div class="index">
+                <div class="breadcrumb">
+                    <li><a href="/hpc/">Home</a></li>
+                    <li class="active">Contact Us</li>
+                </div>
+                <div class="panel panel-default" style="margin-top: 20px">
+                    <div class="panel-body">
+                        <div class="class=col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <address>
+                                <Strong>Email: </Strong>
+                                <br>
+                                chenh@big.ac.cn<br>
+                            </address>
+                            <address>
+                                <strong>Postal Address</strong><br>
+                                The DNA Portrait Landscape Team<br>
+                                BIG Data Center, Beijing Institute of Genomics, Chinese Academy of Sciences<br>
+                                No.1 Beichen West Road<br>
+                                Chaoyang District, Beijing 100101<br>
+                                China
+                            </address>
+                            <address>
+                                <Strong>Project Leader:</Strong>
+                                <br>
+                                <a href="https://sourcedb.big.cas.cn/zw/zjrc/kyxmz/jbylsys/201506/t20150630_4381456.html" target="_blank">Hua Chen:</a> chenh@big.ac.cn<br>
+                            </address>
+                            <address>
+                                <Strong>Web Development:</Strong>
+                                <a href="https://bigd.big.ac.cn/people/Qiang-Du" target="_blank">Qiang Du:</a> duqiang2019m@big.ac.cn<br>
+                                <br>
+                            </address>
+                            <address>
+                                <Strong>Data Curation: </Strong>
+                                <br>
+                                <a href="https://bigd.big.ac.cn/people/Zhao-Li" target="_blank">Hao Wu:</a> wuhao@big.ac.cn<br>
+                                <a href="https://sourcedb.big.cas.cn/zw/zjrc/kyxmz/jbylsys/201506/t20150630_4381456.html" target="_blank">Hua Chen:</a> chenh@big.ac.cn
+                            </address>
+                            <address>
+                                <Strong>Principal Investigator: </Strong>
+                                <br>
+                                <a href="https://sourcedb.big.cas.cn/zw/zjrc/kyxmz/jbylsys/201506/t20150630_4381456.html" target="_blank">Hua Chen:</a> chenh@big.ac.cn
+                            </address>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <address>
+                                <strong>Map: </strong><br>
+<!--                                <img class="masthead" src="https://bigd.big.ac.cn/hmc/static/clean/img/address.jpg" style=" width:100%;">-->
+                                <img class="img-responsive" th:src="@{/img/address.jpg}" style=" width:100%;"/>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{inc/footer::#footer}"></div>
+</body>
+</html>

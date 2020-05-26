@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<div id="nav">
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+
+            <section style="height: 230px; background-size:cover; background-position: center center; background-attachment:fixed; "
+                     th:style="'background-image:url(' + @{/img/gene9.jpg} + ');'">
+                <div class="container" style="height: 230px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page-header col-md-12" style="border-bottom: none">
+                                <div class="col-md-2" style="height: 110px;width: 110px;"><br>
+                                    <img class="img-responsive" th:src="@{/img/logo2.png}"/>
+                                </div>
+                                <div class="col-md-10">
+                                    <h1 class="post-title" style="color: #ffffff;font-size: 50px;margin-bottom: 0">
+                                        Human Morphology Catalog
+                                    </h1>
+                                    <small style="color: #ffffff;font-size:25px">a curated knowledgebase of Human Morphology
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </div>
+                                    <select class="form-control select2" id="all_search" style="width: 100%;">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <span style="color: #FFFFFF; font-size:18px">Examples:&nbsp</span>
+                                <span>
+                                    <a href="https://bigd.big.ac.cn/hpc/browse?gene=OCA2" style="color: #FFFFFF" onMouseOver="this.style.color='#D0D0D0'" onMouseOut="this.style.color='#FFFFFF'">OCA2</a>;
+                                    <a href="https://bigd.big.ac.cn/hpc/browse?chr=1" style="color: #FFFFFF" onMouseOver="this.style.color='#D0D0D0'" onMouseOut="this.style.color='#FFFFFF'">Chromosome1</a>;
+                                    <a href="https://bigd.big.ac.cn/hpc/browse?trait=skin" style="color: #FFFFFF" onMouseOver="this.style.color='#D0D0D0'" onMouseOut="this.style.color='#FFFFFF'">Skin</a>;
+                                    <a href="https://bigd.big.ac.cn/hpc/browse?snp=rs6058017" style="color: #FFFFFF" onMouseOver="this.style.color='#D0D0D0'" onMouseOut="this.style.color='#FFFFFF'">rs6058017</a>;
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="/hpc/" class="navbar-brand"><b>Logo</b>HPC</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li th:class="${activeUri=='home'?'active':''}"><a href="/hpc/"><i class="fa fa-home"></i> Home</a></li>
+                        <li th:class="${activeUri=='browse'?'active':''}"><a href="/hpc/browse"><i class="fa fa-list-alt"></i> Browse</a></li>
+                        <li th:class="${activeUri=='toolkit'?'active':''}"><a href="/hpc/toolkit"><i class="fa fa-briefcase"></i> HPC Toolkit</a></li>
+                        <li th:class="${activeUri=='submit'?'active':''}"><a href="/hpc/submit"><i class="fa fa-upload"></i> Submit</a></li>
+                        <li th:class="${activeUri=='statistics'?'active':''}"><a href="/hpc/statistics"><i class="fa fa-signal"></i> Statistics</a></li>
+                        <li th:class="${activeUri=='help'?'active':''}"><a href="/hpc/help"><i class="fa fa-heart"></i> Help</a></li>
+                        <li th:class="${activeUri=='contact'?'active':''}"><a href="/hpc/contact"><i class="fa fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Sign in <i class="fa fa-sign-in"></i>
+                            </a>
+                            <ul class="dropdown-menu"></ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+

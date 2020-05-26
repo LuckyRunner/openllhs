@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-common-db/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-common-db/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-eureka/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-article-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-article-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-search-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service-api/openllhs-service-search-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-article/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-article/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-file/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-service/openllhs-service-search/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/openllhs-parent/openllhs-web/openllhs-web-search/src/main/java" charset="UTF-8" />
+  </component>
+</project>

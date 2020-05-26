@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="openllhs-common" />
+        <module name="openllhs-service-file" />
+        <module name="openllhs-service-article" />
+        <module name="openllhs-eureka" />
+        <module name="openllhs-article-service" />
+        <module name="openllhs-common-db" />
+        <module name="openllhs-web-search" />
+        <module name="openllhs-service-search-api" />
+        <module name="openllhs-service-search" />
+        <module name="code-template" />
+        <module name="openllhs-service-article-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="code-template" target="1.5" />
+      <module name="openllhs-article-service" target="1.8" />
+      <module name="openllhs-common" target="1.8" />
+      <module name="openllhs-common-db" target="1.8" />
+      <module name="openllhs-eureka" target="1.8" />
+      <module name="openllhs-gateway" target="1.8" />
+      <module name="openllhs-parent" target="1.8" />
+      <module name="openllhs-service" target="1.8" />
+      <module name="openllhs-service-api" target="1.8" />
+      <module name="openllhs-service-article" target="1.8" />
+      <module name="openllhs-service-article-api" target="1.8" />
+      <module name="openllhs-service-file" target="1.8" />
+      <module name="openllhs-service-search" target="1.8" />
+      <module name="openllhs-service-search-api" target="1.8" />
+      <module name="openllhs-web" target="1.8" />
+      <module name="openllhs-web-search" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="openllhs-article-service" options="-parameters" />
+      <module name="openllhs-common" options="-parameters" />
+      <module name="openllhs-common-db" options="-parameters" />
+      <module name="openllhs-eureka" options="-parameters" />
+      <module name="openllhs-service-article" options="-parameters" />
+      <module name="openllhs-service-article-api" options="-parameters" />
+      <module name="openllhs-service-file" options="-parameters" />
+      <module name="openllhs-service-search" options="-parameters" />
+      <module name="openllhs-service-search-api" options="-parameters" />
+      <module name="openllhs-web-search" options="-parameters" />
+    </option>
+  </component>
+</project>
