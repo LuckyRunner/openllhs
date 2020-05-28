@@ -1,4 +1,6 @@
 package com.openllhs.article.service.impl;
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openllhs.article.dao.ArticleMapper;
 import com.openllhs.article.dao.AuthorMapper;
 import com.openllhs.article.dao.OrganizationMapper;
@@ -7,16 +9,15 @@ import com.openllhs.article.service.ArticleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.IdWorker;
+import entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.beans.Expression;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 /****
  * @Author:duqiang
  * @Description:Article业务层接口实现类
@@ -36,80 +37,108 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private IdWorker idWorker;
 
+    public String impo() throws Exception{
+        List<Article> articleList = articleMapper.selectAll();
+
+        for (Article each :
+                articleList) {
+            Author author = new Author();
+            author.setArticleId(each.getId());
+            Organization organization = new Organization();
+            organization.setArticleId(each.getId());
+
+
+            List<Author> authorList = authorMapper.select(author);
+            List<Organization> organizationList = organizationMapper.select(organization);
+
+
+            Map<String, Object> authorMap = new HashMap<String, Object>();
+            Map<String, Object> organizationMap = new HashMap<String, Object>();
+            authorMap.put("authorList",authorList);
+            organizationMap.put("organizationList",organizationList);
+            ObjectMapper json = new ObjectMapper();
+            String authors = json.writeValueAsString(authorMap);
+            String organizations = json.writeValueAsString(organizationMap);
+
+            each.setAuthors(authors);
+            each.setOrganizations(organizations);
+
+
+            articleMapper.updateByPrimaryKeySelective(each);
+        }
+        return "导入成功";
+    }
+
+
     @Override
     public void saveArticle(ArticleVO articleVO) {
-        System.out.println("1111111111111111111111");
-        List<AuthorVO> authorList = articleVO.getAuthors();
-        System.out.println("2222222222222222222222");
+
+        List<Author> authorList = articleVO.getAuthors();
+        List<Organization> organizationList = articleVO.getOrganizations();
+
         Article article = articleVO.getArticle();
-        System.out.println(article.toString());
         if(article.getId()==null){
             article.setId(idWorker.nextId());
             article.setVersion(1);
-            article.setStatus("2");
+            article.setStatus("1");
+            article.setAuthors(authorList.toString());
+            article.setAuthors(organizationList.toString());
+
             article.setCreateTime(new Date());
             articleMapper.insertSelective(article);
 
         }else {
-            articleMapper.updateByPrimaryKeySelective(article);
+            Organization organization = new Organization();
             Author author = new Author();
+            organization.setArticleId(article.getId());
             author.setArticleId(article.getId());
-            List<Author> authors = authorMapper.select(author);
-            for(Author each:authors){
-                Organization organization = new Organization();
-                organization.setAuthorId(each.getId());
-                organizationMapper.delete(organization);
-            }
             authorMapper.delete(author);
+            organizationMapper.delete(organization);
+
+            article.setUpdateTime(new Date());
+            article.setVersion(article.getVersion()+1);
+            article.setAuthors(authorList.toString());
+            article.setAuthors(organizationList.toString());
+            articleMapper.updateByPrimaryKeySelective(article);
+        }
+        for(Organization each : organizationList){
+            each.setId(idWorker.nextId());
+            organizationMapper.insertSelective(each);
+        }
+        for(Author each : authorList){
+            each.setId(idWorker.nextId());
+            authorMapper.insertSelective(each);
         }
 
-        for(AuthorVO each : authorList){
-            Author author = new Author();
-            Long authorId = idWorker.nextId();
-            author.setId(authorId);
-            author.setArticleId(article.getId());
-            author.setNameCn(each.getNameCn());
-            author.setNameEn(each.getNameEn());
-            author.setEmail(each.getEmail());
-            author.setIsFirstAuthor(each.getIsFirstAuthor());
-            author.setIsCorauthor(each.getIsCorauthor());
-            author.setSeq(each.getSeq());
-            authorMapper.insertSelective(author);
-            for(Organization organization : each.getOrganizationList()){
-                organizationMapper.insertSelective(organization);
-            }
-        }
     }
 
     @Override
     public ArticleVO findByArticleId(Long id) {
 
-        Article article = articleMapper.selectByPrimaryKey(id);
-        System.out.println(article.toString());
+
         ArticleVO articleVO = new ArticleVO();
+
+        Article article = articleMapper.selectByPrimaryKey(id);
         articleVO.setArticle(article);
+
         Author author = new Author();
         author.setArticleId(id);
         List<Author> authorList = authorMapper.select(author);
-        List<AuthorVO> authorVOList = new ArrayList<>();
-        for(Author each : authorList){
-            AuthorVO authorVO = new AuthorVO();
-            authorVO.setSeq(each.getSeq());
-            authorVO.setArticleId(id);
-            authorVO.setEmail(each.getEmail());
-            authorVO.setId(each.getId());
-            authorVO.setIsCorauthor(each.getIsCorauthor());
-            authorVO.setNameCn(each.getNameCn());
-            authorVO.setNameEn(each.getNameEn());
-            authorVO.setIsFirstAuthor(each.getIsFirstAuthor());
-            Organization organization = new Organization();
-            organization.setAuthorId(each.getId());
-            List<Organization> organizationList = organizationMapper.select(organization);
-            authorVO.setOrganizationList(organizationList);
-            authorVOList.add(authorVO);
-        }
-        articleVO.setAuthors(authorVOList);
+        articleVO.setAuthors(authorList);
+
+        Organization organization = new Organization();
+        organization.setArticleId(id);
+        List<Organization> organizationList = new ArrayList<>();
+        articleVO.setOrganizations(organizationList);
+
         return articleVO;
+    }
+
+    @Override
+    public List<Article> findByStatus(String status) {
+        Article article = new Article();
+        article.setStatus(status);
+        return articleMapper.select(article);
     }
 
     @Override
@@ -215,108 +244,118 @@ public class ArticleServiceImpl implements ArticleService {
         if(article!=null){
             // 论文id
             if(!StringUtils.isEmpty(article.getId())){
-                    criteria.andEqualTo("id",article.getId());
+                criteria.andEqualTo("id",article.getId());
             }
             // doi
             if(!StringUtils.isEmpty(article.getDoi())){
-                    criteria.andEqualTo("doi",article.getDoi());
+                criteria.andEqualTo("doi",article.getDoi());
             }
             // 标题
             if(!StringUtils.isEmpty(article.getTitle())){
-                    criteria.andLike("title","%"+article.getTitle()+"%");
+                criteria.andLike("title","%"+article.getTitle()+"%");
             }
             // 摘要
             if(!StringUtils.isEmpty(article.getAAbstract())){
-                    criteria.andEqualTo("aAbstract",article.getAAbstract());
+                criteria.andEqualTo("aAbstract",article.getAAbstract());
             }
             // 论文内容
             if(!StringUtils.isEmpty(article.getContent())){
-                    criteria.andEqualTo("content",article.getContent());
+                criteria.andEqualTo("content",article.getContent());
             }
             // 关键字
             if(!StringUtils.isEmpty(article.getKeyWords())){
-                    criteria.andEqualTo("keyWords",article.getKeyWords());
+                criteria.andEqualTo("keyWords",article.getKeyWords());
             }
             // 论文首图片
             if(!StringUtils.isEmpty(article.getImage())){
-                    criteria.andEqualTo("image",article.getImage());
+                criteria.andEqualTo("image",article.getImage());
             }
             // 论文内容图片列表
             if(!StringUtils.isEmpty(article.getImages())){
-                    criteria.andEqualTo("images",article.getImages());
+                criteria.andEqualTo("images",article.getImages());
             }
             // pdf
             if(!StringUtils.isEmpty(article.getPdf())){
-                    criteria.andEqualTo("pdf",article.getPdf());
+                criteria.andEqualTo("pdf",article.getPdf());
             }
             // 以往版本pdf列表
             if(!StringUtils.isEmpty(article.getPdfs())){
-                    criteria.andEqualTo("pdfs",article.getPdfs());
+                criteria.andEqualTo("pdfs",article.getPdfs());
             }
             // 创建时间
             if(!StringUtils.isEmpty(article.getCreateTime())){
-                    criteria.andEqualTo("createTime",article.getCreateTime());
+                criteria.andEqualTo("createTime",article.getCreateTime());
             }
             // 更新时间
             if(!StringUtils.isEmpty(article.getUpdateTime())){
-                    criteria.andEqualTo("updateTime",article.getUpdateTime());
+                criteria.andEqualTo("updateTime",article.getUpdateTime());
             }
             //
             if(!StringUtils.isEmpty(article.getSubmitTime())){
-                    criteria.andEqualTo("submitTime",article.getSubmitTime());
+                criteria.andEqualTo("submitTime",article.getSubmitTime());
+            }
+            //
+            if(!StringUtils.isEmpty(article.getPublishDate())){
+                criteria.andEqualTo("publishDate",article.getPublishDate());
             }
             // 领域
             if(!StringUtils.isEmpty(article.getSubject())){
-                    criteria.andEqualTo("subject",article.getSubject());
+                criteria.andEqualTo("subject",article.getSubject());
+            }
+            // 期刊名
+            if(!StringUtils.isEmpty(article.getJournal())){
+                criteria.andEqualTo("journal",article.getJournal());
             }
             // 阅读数
             if(!StringUtils.isEmpty(article.getReadNum())){
-                    criteria.andEqualTo("readNum",article.getReadNum());
+                criteria.andEqualTo("readNum",article.getReadNum());
             }
             // 评论数
             if(!StringUtils.isEmpty(article.getCommentNum())){
-                    criteria.andEqualTo("commentNum",article.getCommentNum());
+                criteria.andEqualTo("commentNum",article.getCommentNum());
             }
             // 下载数
             if(!StringUtils.isEmpty(article.getDownloadNum())){
-                    criteria.andEqualTo("downloadNum",article.getDownloadNum());
+                criteria.andEqualTo("downloadNum",article.getDownloadNum());
             }
-            // 审核状态
+            // 审核状态，0-未审核，1-已审核
             if(!StringUtils.isEmpty(article.getStatus())){
-                    criteria.andEqualTo("status",article.getStatus());
+                criteria.andEqualTo("status",article.getStatus());
             }
             //
             if(!StringUtils.isEmpty(article.getVersion())){
-                    criteria.andEqualTo("version",article.getVersion());
+                criteria.andEqualTo("version",article.getVersion());
             }
-            // 一级分类
-            if(!StringUtils.isEmpty(article.getCategory1Id())){
-                    criteria.andEqualTo("category1Id",article.getCategory1Id());
+            // 是否删除，0-未删除
+            if(!StringUtils.isEmpty(article.getIsDelete())){
+                criteria.andEqualTo("isDelete",article.getIsDelete());
             }
-            // 二级分类
-            if(!StringUtils.isEmpty(article.getCategory2Id())){
-                    criteria.andEqualTo("category2Id",article.getCategory2Id());
-            }
-            // 三级分类
-            if(!StringUtils.isEmpty(article.getCategory3Id())){
-                    criteria.andEqualTo("category3Id",article.getCategory3Id());
+            // 是否展示，0-未展示
+            if(!StringUtils.isEmpty(article.getIsShow())){
+                criteria.andEqualTo("isShow",article.getIsShow());
             }
             //
-            if(!StringUtils.isEmpty(article.getIsDelete())){
-                    criteria.andEqualTo("authorItems",article.getIsDelete());
+            if(!StringUtils.isEmpty(article.getAuthors())){
+                criteria.andEqualTo("authors",article.getAuthors());
             }
-            if(!StringUtils.isEmpty(article.getIsShow())){
-                criteria.andEqualTo("authorItems",article.getIsShow());
+            //
+            if(!StringUtils.isEmpty(article.getOrganizations())){
+                criteria.andEqualTo("organizations",article.getOrganizations());
+            }
+            //
+            if(!StringUtils.isEmpty(article.getCategoryName1())){
+                criteria.andEqualTo("categoryName1",article.getCategoryName1());
+            }
+            //
+            if(!StringUtils.isEmpty(article.getCategoryName2())){
+                criteria.andEqualTo("categoryName2",article.getCategoryName2());
+            }
+            //
+            if(!StringUtils.isEmpty(article.getCategoryName3())){
+                criteria.andEqualTo("categoryName3",article.getCategoryName3());
             }
         }
         return example;
-    }
-
-    @Override
-    public List<Article> findByStatus(String status) {
-        Article article = new Article();
-        article.setStatus(status);
-        return articleMapper.select(article);
     }
 
     /**

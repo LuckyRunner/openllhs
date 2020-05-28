@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.OrganizationMapper;
 import com.openllhs.article.pojo.Organization;
 import com.openllhs.article.service.OrganizationService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:Organization业务层接口实现类
@@ -79,29 +82,17 @@ public class OrganizationServiceImpl implements OrganizationService {
             if(!StringUtils.isEmpty(organization.getId())){
                     criteria.andEqualTo("id",organization.getId());
             }
-            // 单位中文名
-            if(!StringUtils.isEmpty(organization.getNameCn())){
-                    criteria.andLike("nameCn","%"+organization.getNameCn()+"%");
+            // 单位名
+            if(!StringUtils.isEmpty(organization.getName())){
+                    criteria.andLike("name","%"+organization.getName()+"%");
             }
-            // 地址
-            if(!StringUtils.isEmpty(organization.getAddressCn())){
-                    criteria.andEqualTo("addressCn",organization.getAddressCn());
-            }
-            // 单位英文名
-            if(!StringUtils.isEmpty(organization.getNameEn())){
-                    criteria.andLike("nameEn","%"+organization.getNameEn()+"%");
-            }
-            // 英文地址
-            if(!StringUtils.isEmpty(organization.getAddressEn())){
-                    criteria.andEqualTo("addressEn",organization.getAddressEn());
-            }
-            // 
+            //
             if(!StringUtils.isEmpty(organization.getSeq())){
                     criteria.andEqualTo("seq",organization.getSeq());
             }
-            // 
-            if(!StringUtils.isEmpty(organization.getAuthorId())){
-                    criteria.andEqualTo("authorId",organization.getAuthorId());
+            //
+            if(!StringUtils.isEmpty(organization.getArticleId())){
+                    criteria.andEqualTo("articleId",organization.getArticleId());
             }
         }
         return example;

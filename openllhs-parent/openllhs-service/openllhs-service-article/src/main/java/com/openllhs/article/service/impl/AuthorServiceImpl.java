@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.AuthorMapper;
 import com.openllhs.article.pojo.Author;
 import com.openllhs.article.service.AuthorService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:Author业务层接口实现类
@@ -79,29 +82,33 @@ public class AuthorServiceImpl implements AuthorService {
             if(!StringUtils.isEmpty(author.getId())){
                     criteria.andEqualTo("id",author.getId());
             }
-            // 中文名
-            if(!StringUtils.isEmpty(author.getNameCn())){
-                    criteria.andLike("nameCn","%"+author.getNameCn()+"%");
+            //
+            if(!StringUtils.isEmpty(author.getArticleId())){
+                    criteria.andEqualTo("articleId",author.getArticleId());
+            }
+            // 姓名
+            if(!StringUtils.isEmpty(author.getName())){
+                    criteria.andLike("name","%"+author.getName()+"%");
             }
             // 邮箱
             if(!StringUtils.isEmpty(author.getEmail())){
                     criteria.andEqualTo("email",author.getEmail());
             }
-            // 英文名
-            if(!StringUtils.isEmpty(author.getNameEn())){
-                    criteria.andLike("nameEn","%"+author.getNameEn()+"%");
+            // 排序
+            if(!StringUtils.isEmpty(author.getSeq())){
+                    criteria.andEqualTo("seq",author.getSeq());
             }
-            // 
-            if(!StringUtils.isEmpty(author.getArticleId())){
-                    criteria.andEqualTo("articleId",author.getArticleId());
+            // 所属单位编码顺序
+            if(!StringUtils.isEmpty(author.getOrganizationSeq())){
+                    criteria.andEqualTo("organizationSeq",author.getOrganizationSeq());
             }
-            // 
+            // 是否通讯作者，1-是，0-不是
             if(!StringUtils.isEmpty(author.getIsCorauthor())){
                     criteria.andEqualTo("isCorauthor",author.getIsCorauthor());
             }
-            // 
-            if(!StringUtils.isEmpty(author.getSeq())){
-                    criteria.andEqualTo("seq",author.getSeq());
+            // 是否一作，1-是，0-不是
+            if(!StringUtils.isEmpty(author.getIsFirstAuthor())){
+                    criteria.andEqualTo("isFirstAuthor",author.getIsFirstAuthor());
             }
         }
         return example;

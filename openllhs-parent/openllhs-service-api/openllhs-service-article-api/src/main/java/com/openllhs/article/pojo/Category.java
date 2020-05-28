@@ -1,9 +1,8 @@
 package com.openllhs.article.pojo;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.Long;
-import java.lang.String;
-import java.lang.Integer;
+
 /****
  * @Author:duqiang
  * @Description:Category构建
@@ -28,9 +27,6 @@ public class Category implements Serializable{
 
     @Column(name = "is_menu")
 	private String isMenu;//是否导航
-
-    @Column(name = "seq")
-	private Integer seq;//排序
 
     @Column(name = "parent_id")
 	private Long parentId;//上级ID
@@ -81,15 +77,6 @@ public class Category implements Serializable{
 	//set方法
 	public void setIsMenu(String isMenu) {
 		this.isMenu = isMenu;
-	}
-	//get方法
-	public Integer getSeq() {
-		return seq;
-	}
-
-	//set方法
-	public void setSeq(Integer seq) {
-		this.seq = seq;
 	}
 	//get方法
 	public Long getParentId() {

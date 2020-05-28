@@ -201,8 +201,6 @@ public class ArticleServiceImpl implements ArticleService {
                             }
                         }
                 );
-
-
         nativeSearchQueryBuilder.withQuery(boolQueryBuilder);
         return nativeSearchQueryBuilder;
     }
@@ -220,8 +218,8 @@ public class ArticleServiceImpl implements ArticleService {
         List<ArticleInfo> articleInfoList = JSON.parseArray(JSON.toJSONString(articleResult.getData()),ArticleInfo.class);
 
         for(ArticleInfo articleInfo : articleInfoList){
-            Map suthorMap = JSON.parseObject(articleInfo.getAuthors(), Map.class);
-            articleInfo.setAuthorMap(suthorMap);
+            Map authorMap = JSON.parseObject(articleInfo.getAuthors(), Map.class);
+            articleInfo.setAuthorMap(authorMap);
         }
         articleEsMapper.saveAll(articleInfoList);
     }

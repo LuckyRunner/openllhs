@@ -1,10 +1,9 @@
 package com.openllhs.article.pojo;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.Long;
 import java.util.Date;
-import java.lang.String;
-import java.lang.Integer;
+
 /****
  * @Author:duqiang
  * @Description:UndoLog构建

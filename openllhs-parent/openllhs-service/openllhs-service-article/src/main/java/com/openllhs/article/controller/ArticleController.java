@@ -24,6 +24,12 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @GetMapping(value = "/impo")
+    public Result<ArticleVO> impo() throws Exception{
+        String articleVO = articleService.impo();
+        return new Result<ArticleVO>(true,StatusCode.OK,"成功",articleVO);
+    }
+
     @PutMapping(value = "/audit/{id}")
     public Result audit(@PathVariable(value = "id")Long articleId){
         articleService.audit(articleId);

@@ -41,7 +41,7 @@ public class ArticleInfo implements Serializable {
     @Field(index = false, store = true, type = FieldType.Keyword)
     private String image;
 
-    //文章状态： 1-正常， 2-下架，3-删除
+    //文章状态：0-下架 1-正常
     @Field(index = true, store = true, type = FieldType.Keyword)
     private String status;
 
@@ -50,6 +50,8 @@ public class ArticleInfo implements Serializable {
     private Date createTime;
 
     private Date updateTime;
+
+    private Date publishTime;
 
     @Field(index = true, store = true, type = FieldType.Keyword)
     private String idDefault;
@@ -62,10 +64,6 @@ public class ArticleInfo implements Serializable {
 
     @Field(index = true, store = true, type = FieldType.Integer)
     private Integer downloadNum;//下载数
-
-    //类目ID
-    @Field(index = true, store = true, type = FieldType.Long)
-    private Long categoryId;
 
     //类目名称
     @Field(index = true, store = true, type = FieldType.Keyword)
@@ -80,9 +78,16 @@ public class ArticleInfo implements Serializable {
     @Field(index = true, store = true, type = FieldType.Keyword)
     private String subject;
 
+    @Field(index = true, store = true, type = FieldType.Keyword)
+    private String journal;
+
     private String authors;
 
     private Map<String, Object> authorMap;
+
+    private String organizations;
+
+    private Map<String, Object> organizationMap;
 
     //是否默认
     @Field(index = true, store = true, type = FieldType.Keyword)

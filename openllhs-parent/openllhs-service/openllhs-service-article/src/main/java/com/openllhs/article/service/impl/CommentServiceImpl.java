@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.CommentMapper;
 import com.openllhs.article.pojo.Comment;
 import com.openllhs.article.service.CommentService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:Comment业务层接口实现类
@@ -75,23 +78,23 @@ public class CommentServiceImpl implements CommentService {
         Example example=new Example(Comment.class);
         Example.Criteria criteria = example.createCriteria();
         if(comment!=null){
-            // 
+            //
             if(!StringUtils.isEmpty(comment.getId())){
                     criteria.andEqualTo("id",comment.getId());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(comment.getUserId())){
                     criteria.andEqualTo("userId",comment.getUserId());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(comment.getArticleId())){
                     criteria.andEqualTo("articleId",comment.getArticleId());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(comment.getContent())){
                     criteria.andEqualTo("content",comment.getContent());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(comment.getDate())){
                     criteria.andEqualTo("date",comment.getDate());
             }

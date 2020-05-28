@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.CategoryMapper;
 import com.openllhs.article.pojo.Category;
 import com.openllhs.article.service.CategoryService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:Category业务层接口实现类
@@ -94,10 +97,6 @@ public class CategoryServiceImpl implements CategoryService {
             // 是否导航
             if(!StringUtils.isEmpty(category.getIsMenu())){
                     criteria.andEqualTo("isMenu",category.getIsMenu());
-            }
-            // 排序
-            if(!StringUtils.isEmpty(category.getSeq())){
-                    criteria.andEqualTo("seq",category.getSeq());
             }
             // 上级ID
             if(!StringUtils.isEmpty(category.getParentId())){

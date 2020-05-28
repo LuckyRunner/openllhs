@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.SubjectMapper;
 import com.openllhs.article.pojo.Subject;
 import com.openllhs.article.service.SubjectService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:Subject业务层接口实现类
@@ -75,19 +78,19 @@ public class SubjectServiceImpl implements SubjectService {
         Example example=new Example(Subject.class);
         Example.Criteria criteria = example.createCriteria();
         if(subject!=null){
-            // 领域id
+            //
             if(!StringUtils.isEmpty(subject.getId())){
                     criteria.andEqualTo("id",subject.getId());
             }
-            // 领域名称
-            if(!StringUtils.isEmpty(subject.getName())){
-                    criteria.andLike("name","%"+subject.getName()+"%");
+            //
+            if(!StringUtils.isEmpty(subject.getNameEn())){
+                    criteria.andLike("nameEn","%"+subject.getNameEn()+"%");
             }
-            // 领域图片地址
-            if(!StringUtils.isEmpty(subject.getImage())){
-                    criteria.andEqualTo("image",subject.getImage());
+            //
+            if(!StringUtils.isEmpty(subject.getNameCn())){
+                    criteria.andLike("nameCn","%"+subject.getNameCn()+"%");
             }
-            // 领域的首字母
+            // 首字母
             if(!StringUtils.isEmpty(subject.getLetter())){
                     criteria.andEqualTo("letter",subject.getLetter());
             }

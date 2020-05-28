@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.UndoLogMapper;
 import com.openllhs.article.pojo.UndoLog;
 import com.openllhs.article.service.UndoLogService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:UndoLog业务层接口实现类
@@ -75,35 +78,35 @@ public class UndoLogServiceImpl implements UndoLogService {
         Example example=new Example(UndoLog.class);
         Example.Criteria criteria = example.createCriteria();
         if(undoLog!=null){
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getId())){
                     criteria.andEqualTo("id",undoLog.getId());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getBranchId())){
                     criteria.andEqualTo("branchId",undoLog.getBranchId());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getXid())){
                     criteria.andEqualTo("xid",undoLog.getXid());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getRollbackInfo())){
                     criteria.andEqualTo("rollbackInfo",undoLog.getRollbackInfo());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getLogStatus())){
                     criteria.andEqualTo("logStatus",undoLog.getLogStatus());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getLogCreated())){
                     criteria.andEqualTo("logCreated",undoLog.getLogCreated());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getLogModified())){
                     criteria.andEqualTo("logModified",undoLog.getLogModified());
             }
-            // 
+            //
             if(!StringUtils.isEmpty(undoLog.getExt())){
                     criteria.andEqualTo("ext",undoLog.getExt());
             }

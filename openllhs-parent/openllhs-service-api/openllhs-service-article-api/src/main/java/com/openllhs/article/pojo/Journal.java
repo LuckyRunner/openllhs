@@ -7,21 +7,18 @@ import java.io.Serializable;
 
 /****
  * @Author:duqiang
- * @Description:Subject构建
+ * @Description:Journal构建
  * @Date 2020/5/12 0:18
  *****/
-@Table(name="tb_subject")
-public class Subject implements Serializable{
+@Table(name="tb_journal")
+public class Journal implements Serializable{
 
 	@Id
     @Column(name = "id")
 	private Long id;//
 
-    @Column(name = "name_en")
-	private String nameEn;//
-
-    @Column(name = "name_cn")
-	private String nameCn;//
+    @Column(name = "name")
+	private String name;//期刊名字
 
     @Column(name = "letter")
 	private String letter;//首字母
@@ -41,22 +38,13 @@ public class Subject implements Serializable{
 		this.id = id;
 	}
 	//get方法
-	public String getNameEn() {
-		return nameEn;
+	public String getName() {
+		return name;
 	}
 
 	//set方法
-	public void setNameEn(String nameEn) {
-		this.nameEn = nameEn;
-	}
-	//get方法
-	public String getNameCn() {
-		return nameCn;
-	}
-
-	//set方法
-	public void setNameCn(String nameCn) {
-		this.nameCn = nameCn;
+	public void setName(String name) {
+		this.name = name;
 	}
 	//get方法
 	public String getLetter() {

@@ -1,8 +1,8 @@
 package com.openllhs.article.pojo;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.Long;
-import java.lang.String;
+
 /****
  * @Author:duqiang
  * @Description:Album构建

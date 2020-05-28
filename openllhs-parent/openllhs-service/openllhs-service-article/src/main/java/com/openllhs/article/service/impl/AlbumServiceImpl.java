@@ -1,14 +1,17 @@
 package com.openllhs.article.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.openllhs.article.dao.AlbumMapper;
 import com.openllhs.article.pojo.Album;
 import com.openllhs.article.service.AlbumService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
+
 /****
  * @Author:duqiang
  * @Description:Album业务层接口实现类
@@ -16,7 +19,6 @@ import java.util.List;
  *****/
 @Service
 public class AlbumServiceImpl implements AlbumService {
-
 
     @Autowired
     private AlbumMapper albumMapper;

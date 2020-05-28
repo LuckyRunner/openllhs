@@ -7,5 +7,6 @@ import java.util.List;
 @Data
 public class ArticleVO {
     private Article article;
-    private List<AuthorVO> authors;
+    private List<Author> authors;
+    private List<Organization> organizations;
 }
