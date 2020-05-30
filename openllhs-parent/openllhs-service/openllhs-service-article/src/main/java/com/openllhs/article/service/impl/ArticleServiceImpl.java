@@ -40,18 +40,14 @@ public class ArticleServiceImpl implements ArticleService {
     public String impo() throws Exception{
         List<Article> articleList = articleMapper.selectAll();
 
-        for (Article each :
-                articleList) {
+        for (Article each : articleList) {
             Author author = new Author();
             author.setArticleId(each.getId());
             Organization organization = new Organization();
             organization.setArticleId(each.getId());
 
-
             List<Author> authorList = authorMapper.select(author);
             List<Organization> organizationList = organizationMapper.select(organization);
-
-
             Map<String, Object> authorMap = new HashMap<String, Object>();
             Map<String, Object> organizationMap = new HashMap<String, Object>();
             authorMap.put("authorList",authorList);
@@ -59,11 +55,8 @@ public class ArticleServiceImpl implements ArticleService {
             ObjectMapper json = new ObjectMapper();
             String authors = json.writeValueAsString(authorMap);
             String organizations = json.writeValueAsString(organizationMap);
-
             each.setAuthors(authors);
             each.setOrganizations(organizations);
-
-
             articleMapper.updateByPrimaryKeySelective(each);
         }
         return "导入成功";

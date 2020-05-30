@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home - Human Morphology Catalog - National Genomics Data Center</title>
+    <title>openllhs</title>
     <div th:replace="~{inc/header::header}"></div>
     <link rel="stylesheet" th:href="@{/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/plugins/bootstrap-slider/slider.css}">
     <link rel="stylesheet" th:href="@{/css/my.css}">
+
+    <style>
+        /*.shadow{*/
+        /*    float:left;*/
+        /*    background-color: white;*/
+        /*    transition-duration: 0.5s; //停留时间显示*/
+        /*}*/
+        /*.shadow:hover{*/
+        /*    -webkit-box-shadow: #ccc 0px 10px 10px;*/
+        /*    -moz-box-shadow: #ccc 0px 10px 10px;*/
+        /*    box-shadow: #ccc 0px 10px 10px;*/
+        /*}*/
+    </style>
+
 </head>
 
 <body class="hold-transition skin-blue layout-top-nav">
@@ -56,36 +70,123 @@
         <div class="row">
             <br/>
             <div class="col-md-9">
-                <div class="well">
-                    <table id="mechanism_statistic" class="table table-hover" > </table>
-                </div>
+                <form action="/search/list" class="form-group">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" name="keywords"
+                               th:value="${#maps.containsKey(searchMap,'keywords')? searchMap.keywords:''}">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                        </span>
+                    </div>
+
+                    <div class="input-group" style="background-color: #ffffff">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Results:
+                                <button type="button" class="btn btn-default btn-sm"
+                                        th:if="${#maps.containsKey(searchMap,'category1')}" style="width: auto">
+                                    <em th:text="${searchMap.category1}"></em>
+                                    <a th:value="back" onclick="backTo();"><i class="fa fa-fw fa-close"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm"
+                                        th:if="${#maps.containsKey(searchMap,'category2')}" style="width: auto">
+                                    <em th:text="${searchMap.category2}"></em>
+                                    <a th:value="back" onclick="backTo();"><i class="fa fa-fw fa-close"></i> </a>
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm"
+                                        th:if="${#maps.containsKey(searchMap,'category3')}" style="width: auto">
+                                    <em th:text="${searchMap.category3}"></em>
+                                    <a th:value="back" onclick="backTo();"><i class="fa fa-fw fa-close"></i> </a>
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm"
+                                        th:if="${#maps.containsKey(searchMap,'subject')}" style="width: auto">
+                                    <em th:text="${searchMap.subject}"></em>
+                                    <a th:value="back" onclick="backTo();"><i class="fa fa-fw fa-close"></i> </a>
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm"
+                                        th:if="${#maps.containsKey(searchMap,'journal')}" style="width: auto">
+                                    <em th:text="${searchMap.journal}"></em>
+                                    <a th:value="back" onclick="backTo();"><i class="fa fa-fw fa-close"></i> </a>
+                                </button>
+                            </h4>
+                        </div>
+
+                        <table class="table table-bordered">
+                            <tr th:unless="${#maps.containsKey(searchMap,'category1')}">
+                                <td>Category1：</td>
+                                <td>
+                                    <span th:each="category1,cat1Statue:${result.category1List}">
+                                        <a th:href="@{${url}(category1=${category1})}" th:text="${category1}"></a>
+                                        <em th:unless="${cat1Statue.last}">、</em>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr th:unless="${#maps.containsKey(searchMap,'category2')}">
+                                <td>Category2：</td>
+                                <td>
+                                    <span th:each="category2,cat2Statue:${result.category2List}">
+                                        <a th:href="@{${url}(category2=${category2})}" th:text="${category2}"></a>
+                                        <em th:unless="${cat2Statue.last}">、</em>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr th:unless="${#maps.containsKey(searchMap,'category3')}">
+                                <td>Category3：</td>
+                                <td>
+                                    <span th:each="category3,cat3Statue:${result.category3List}">
+                                        <a th:href="@{${url}(category3=${category3})}" th:text="${category3}"></a>
+                                        <em th:unless="${cat3Statue.last}">、</em>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr th:unless="${#maps.containsKey(searchMap,'subject')}">
+                                <td>Subject：</td>
+                                <td>
+                                    <span th:each="subject,subjectStatue:${result.subjectList}">
+                                        <a th:href="@{${url}(subject=${subject})}" th:text="${subject}"></a>
+                                        <em th:unless="${subjectStatue.last}">、</em>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr th:unless="${#maps.containsKey(searchMap,'journal')}">
+                                <td>Journal：</td>
+                                <td>
+                                    <span th:each="journal,journalStatue:${result.journalList}">
+                                        <a th:href="@{${url}(journal=${journal})}" th:text="${journal}"></a>
+                                        <em th:unless="${journalStatue.last}">、</em>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
 
                 <br/>
                 <div class="box box-solid">
                     <div class="box-header with-border">
                         <i class="fa fa-text-width"></i>
-
                         <h3 class="box-title">Recent Articles</h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
+
+                    <div th:each="item:${result.rows}" class="box-body shadow">
                         <blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            <a th:utext="${item.title}"></a><br>
+                            <span th:each="one,oneStatue:${item.authorMap.authorList}">
+                                <em th:utext="${one.name}"></em>
+                                <em th:unless="${oneStatue.last}">,</em>
+                            </span>
                         </blockquote>
+                        <hr/>
                     </div>
+
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-
+                        <img class="profile-user-img img-responsive img-circle" src="/img/user4-128x128.jpg" alt="User profile picture">
                         <h3 class="profile-username text-center">Nina Mcintire</h3>
-
                         <p class="text-muted text-center">Software Engineer</p>
-
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
                                 <b>Followers</b> <a class="pull-right">1,322</a>
@@ -100,33 +201,22 @@
 
                         <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
 
-                <!-- About Me Box -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">About Me</h3>
                     </div>
-                    <!-- /.box-header -->
                     <div class="box-body">
                         <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
                         <p class="text-muted">
                             B.S. in Computer Science from the University of Tennessee at Knoxville
                         </p>
-
                         <hr>
-
                         <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
                         <p class="text-muted">Malibu, California</p>
-
                         <hr>
-
                         <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
                         <p>
                             <span class="label label-danger">UI Design</span>
                             <span class="label label-success">Coding</span>
@@ -134,29 +224,20 @@
                             <span class="label label-warning">PHP</span>
                             <span class="label label-primary">Node.js</span>
                         </p>
-
                         <hr>
-
                         <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
-            </div>
-
-            <div class="col-md-12">
-
             </div>
         </div>
-
-        <div class="row"></div>
-        <div class="row"></div>
     </div>
 </div>
 <div th:replace="~{inc/footer::#footer}"></div>
 <script>
+    function backTo() {
+        window.history.back(-1);
+    }
 
 </script>
 </body>

@@ -81,8 +81,17 @@ public class ArticleServiceImpl implements ArticleService {
         if(searchMap==null || StringUtils.isEmpty(searchMap.get("categoryName1"))){
             nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("categoryName1").field("categoryName1"));
         }
+        if(searchMap==null || StringUtils.isEmpty(searchMap.get("categoryName2"))){
+            nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("categoryName2").field("categoryName2"));
+        }
+        if(searchMap==null || StringUtils.isEmpty(searchMap.get("categoryName3"))){
+            nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("categoryName3").field("categoryName3"));
+        }
         if(searchMap==null || StringUtils.isEmpty(searchMap.get("subject"))){
             nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("subject").field("subject"));
+        }
+        if(searchMap==null || StringUtils.isEmpty(searchMap.get("journal"))){
+            nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("journal").field("journal"));
         }
 
         nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("authors").field("author.keyword"));
@@ -92,17 +101,28 @@ public class ArticleServiceImpl implements ArticleService {
         if(searchMap==null || StringUtils.isEmpty(searchMap.get("categoryName1"))){
             StringTerms categoryTerms = aggregatedPage.getAggregations().get("categoryName1");
             List<String> categoryList = getGroupList(categoryTerms);
-            groupMapResult.put("categoryList",categoryList);
+            groupMapResult.put("category1List",categoryList);
+        }
+        if(searchMap==null || StringUtils.isEmpty(searchMap.get("categoryName2"))){
+            StringTerms categoryTerms = aggregatedPage.getAggregations().get("categoryName2");
+            List<String> categoryList = getGroupList(categoryTerms);
+            groupMapResult.put("category2List",categoryList);
+        }
+        if(searchMap==null || StringUtils.isEmpty(searchMap.get("categoryName3"))){
+            StringTerms categoryTerms = aggregatedPage.getAggregations().get("categoryName3");
+            List<String> categoryList = getGroupList(categoryTerms);
+            groupMapResult.put("category3List",categoryList);
         }
         if(searchMap==null || StringUtils.isEmpty(searchMap.get("subject"))){
             StringTerms subjectTerms = aggregatedPage.getAggregations().get("subject");
             List<String> subjectList = getGroupList(subjectTerms);
             groupMapResult.put("subjectList",subjectList);
         }
-
-        StringTerms authorTerms = aggregatedPage.getAggregations().get("authorMap");
-        List<String> authorList = getGroupList(authorTerms);
-        groupMapResult.put("authorList",authorList);
+        if(searchMap==null || StringUtils.isEmpty(searchMap.get("journal"))){
+            StringTerms subjectTerms = aggregatedPage.getAggregations().get("journal");
+            List<String> subjectList = getGroupList(subjectTerms);
+            groupMapResult.put("journalList",subjectList);
+        }
 
         return groupMapResult;
 
@@ -111,8 +131,8 @@ public class ArticleServiceImpl implements ArticleService {
         List<String> groupList = new ArrayList<String>();
         if(stringTerms!= null){
             for(StringTerms.Bucket bucket : stringTerms.getBuckets()){
-                String feildName = bucket.getKeyAsString();
-                groupList.add(feildName);
+                String fieldName = bucket.getKeyAsString();
+                groupList.add(fieldName);
             }
         }
         return groupList;
@@ -125,10 +145,12 @@ public class ArticleServiceImpl implements ArticleService {
         if(searchMap!=null && searchMap.size()>0){
             String keywords = searchMap.get("keywords");
             if(!StringUtils.isEmpty(keywords)){
-                boolQueryBuilder.must(QueryBuilders.queryStringQuery(keywords).field("title"));
-                boolQueryBuilder.must(QueryBuilders.queryStringQuery(keywords).field("aabstract"));
-                boolQueryBuilder.must(QueryBuilders.queryStringQuery(keywords).field("keyWords"));
-                boolQueryBuilder.must(QueryBuilders.queryStringQuery(keywords).field("authorMap"));
+
+                boolQueryBuilder.should(QueryBuilders.queryStringQuery(keywords).field("title"));
+                boolQueryBuilder.should(QueryBuilders.queryStringQuery(keywords).field("keyWords"));
+                boolQueryBuilder.should(QueryBuilders.queryStringQuery(keywords).field("aabstract"));
+                boolQueryBuilder.should(QueryBuilders.queryStringQuery(keywords).field("authorMap.authorList.name"));
+
             }
 
             for(Map.Entry<String, String> entry : searchMap.entrySet()){
@@ -137,8 +159,8 @@ public class ArticleServiceImpl implements ArticleService {
                     String value = entry.getValue();
                     boolQueryBuilder.must(QueryBuilders.termQuery("authorMap."+key.substring(7)+".keyword",value));
                 }
-
             }
+
         }
 
         //开启分页查询

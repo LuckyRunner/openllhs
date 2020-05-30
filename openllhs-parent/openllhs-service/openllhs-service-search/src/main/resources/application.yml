@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: search
+
+  thymeleaf:
+    cache: false
+  main:
+    allow-bean-definition-overriding: true
 #  rabbitmq:
 #    host: 192.168.200.128
 #  redis:
@@ -13,8 +18,6 @@ spring:
     elasticsearch:
       cluster-name: docker-cluster
       cluster-nodes: 172.16.0.254:9300
-  thymeleaf:
-    cache: false
 eureka:
   client:
     service-url:
